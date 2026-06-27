@@ -1,0 +1,216 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Telegram「Too Many Requests」错误解决指南：429限制全解析</title><meta name="description" content="Telegram出现Too Many Requests错误怎么办？本文从API速率限制机制出发，完整解析429错误的触发原因、持续时间、分场景解决方案和预防策略。无论你是Bot开发者、频道管理员还是普通用户遇到此问题，都能在这里找到恢复方法。"><meta name="keywords" content="Telegram,Too Many Requests,429错误,发送限制,telegram请求过多,速率限制,tg发送太频繁,telegram API限制,flood control"><link rel="canonical" href="https://tookd.com/telegram-too-many-requests/"><link rel="alternate" hreflang="zh-CN" href="https://tookd.com/telegram-too-many-requests/"><meta name="robots" content="index, follow"><!-- OG --><meta property="og:title" content="Telegram「Too Many Requests」错误解决指南：429限制全解析"><meta property="og:description" content="Telegram出现Too Many Requests错误怎么办？本文从API速率限制机制出发，完整解析429错误的触发原因、持续时间、分场景解决方案和预防策略。无论你是Bot开发者、频道管理员还是普通用户遇到此问题，都能在这里找到恢复方法。"><meta property="og:url" content="https://tookd.com/telegram-too-many-requests/"><meta property="og:type" content="article"><meta property="og:image" content="https://tookd.com/images/og-default.png"><meta name="twitter:card" content="summary_large_image"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><!-- Structured Data --><script type="application/ld+json">[{"@context":"https://schema.org","@type":"Article","headline":"Telegram「Too Many Requests」错误解决指南：429限制全解析","description":"Telegram出现Too Many Requests错误怎么办？本文从API速率限制机制出发，完整解析429错误的触发原因、持续时间、分场景解决方案和预防策略。无论你是Bot开发者、频道管理员还是普通用户遇到此问题，都能在这里找到恢复方法。","url":"https://tookd.com/telegram-too-many-requests/","datePublished":"2026-06-27","dateModified":"2026-06-27","author":{"@type":"Organization","name":"TG教程指南"},"inLanguage":"zh-CN","image":"https://tookd.com/images/og-default.png"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://tookd.com"},{"@type":"ListItem","position":2,"name":"Telegram「Too Many Requests」错误解决指南：429限制全解析"}]}]</script><style>.art-wrap[data-astro-cid-yvbahnfj]{max-width:1100px}</style></head> <body> <!-- Nav --> <nav class="site-nav"> <div class="nav-inner"> <a href="/" class="nav-logo">TG消息修复</a> <div class="nav-links"> <a href="/">首页</a> <a href="/articles/">所有教程</a> <a href="/articles/?category=network-fix">网络排查</a><a href="/articles/?category=account-limits">账户限制</a><a href="/articles/?category=file-send">文件发送</a><a href="/articles/?category=group-send">群组频道</a><a href="/articles/?category=send-faq">发送FAQ</a> </div> </div> </nav> <!-- Breadcrumb (article pages) --> <div class="breadcrumb"> <a href="/">首页</a> <span> &raquo; Telegram「Too Many Requests」错误解决指南：429限制全解析</span> </div> <main>  <div class="art-wrap" data-astro-cid-yvbahnfj> <article class="art-main" data-astro-cid-yvbahnfj> <h1 data-astro-cid-yvbahnfj>Telegram「Too Many Requests」错误解决指南：429限制全解析</h1> <div class="art-meta" data-astro-cid-yvbahnfj> <span data-astro-cid-yvbahnfj>📅 2026-06-27</span> <span class="art-tag account-limits" data-astro-cid-yvbahnfj>账户限制</span> </div> <div class="art-body" data-astro-cid-yvbahnfj> <img src="/images/default-cover.jpg" alt="Telegram「Too Many Requests」错误解决指南：429限制全解析" style="width:100%; border-radius:8px; margin-bottom:24px;" data-astro-cid-yvbahnfj> <p>你正在Telegram上批量管理频道消息、或者你的Bot正在自动回复用户，突然——一切停止响应。你打开日志，看到一行刺眼的错误：<strong>「Too Many Requests: retry after 42」</strong>。</p>
+<p>这个错误代码是 <strong>HTTP 429</strong>，意味着你在短时间内向Telegram服务器发送了过多的请求，触发了速率限制（Rate Limiting）。对于普通用户来说，它可能表现为「操作过于频繁，请稍后再试」；对于开发者来说，它会导致Bot和API调用全部中断。</p>
+<p>本文从零开始解释Too Many Requests错误：它是什么、为什么会触发、不同类型的限制有什么区别、以及如何快速恢复和长远预防。无论你是用Telegram客户端还是API，这里都有对应的解决方案。</p>
+<h2 id="too-many-requests-到底是什么">Too Many Requests 到底是什么</h2>
+<p>Too Many Requests（HTTP 429）是Telegram服务器拒绝你请求时返回的标准错误。它的底层逻辑非常简单：</p>
+<blockquote>
+<p><strong>你不能在短时间内执行太多相同类型的操作。服务器认为你的行为模式异常，于是暂停了对你的服务。</strong></p>
+</blockquote>
+<p>Telegram的速率限制系统叫做「Flood Control」（洪水控制），目的是：</p>
+<ol>
+<li>防止单个用户或Bot占用过多服务器资源</li>
+<li>阻止垃圾信息和自动化滥用</li>
+<li>保证所有用户都能公平使用服务</li>
+</ol>
+<h3 id="错误提示的不同形式">错误提示的不同形式</h3>
+<p>不同的Telegram操作会显示不同的提示文本，但它们本质上都是429限制：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>场景</th><th>提示文本</th></tr></thead><tbody><tr><td>客户端发送消息</td><td>”Too many attempts, please try again later”</td></tr><tr><td>加入群组/频道</td><td>”Too many requests, please try again later”</td></tr><tr><td>API调用（Bot）</td><td><code>[429] Too Many Requests: retry after X</code></td></tr><tr><td>添加联系人</td><td>”Sorry, you have been doing this too frequently”</td></tr><tr><td>修改账号信息</td><td>”Too many changes, try again later”</td></tr></tbody></table>
+<p>其中API调用返回的 <code>retry after X</code> 是最明确的——X就是你需要等待的秒数。</p>
+<h2 id="哪些操作最容易触发-too-many-requests">哪些操作最容易触发 Too Many Requests</h2>
+<h3 id="发送消息最高频触发场景">发送消息（最高频触发场景）</h3>
+<p>这是普通用户最容易遇到429的场景：</p>
+<ul>
+<li><strong>短时间群发私聊</strong>：1分钟内给10个以上不同用户发消息</li>
+<li><strong>群组内刷屏</strong>：在一个群组中连续发送大量消息（尤其是包含链接的消息）</li>
+<li><strong>跨群组复制粘贴</strong>：在多个群组中发送完全相同的内容</li>
+<li><strong>机器人高频回复</strong>：Bot在1秒内回复多条消息</li>
+</ul>
+<p>如果你是因为发送频率问题被限制，可以参考我们专门写的 <a href="/telegram-account-send-limit/">账户发送限制解除教程</a>，里面有完整的行为调整策略。</p>
+<h3 id="加入群组和频道">加入群组和频道</h3>
+<p>Telegram严格限制加入群组/频道的频率：</p>
+<ul>
+<li><strong>手动加入</strong>：每小时加入的群组/频道数量有上限</li>
+<li><strong>通过链接加入</strong>：短时间点击大量邀请链接会触发限制</li>
+<li><strong>Bot自动加入</strong>：被严格限制，滥用会导致Bot被封</li>
+</ul>
+<p>如果你在整理自己的订阅列表时一口气退出了很多频道然后想重新加入，这段操作可能触发限制。建议间隔操作，每次加入之间等待至少30秒。</p>
+<h3 id="添加联系人">添加联系人</h3>
+<p>短时间内大量添加联系人是一个明确的垃圾行为信号：</p>
+<ul>
+<li>从群组成员列表中逐个添加陌生人</li>
+<li>通过手机号批量导入联系人</li>
+<li>使用自动化脚本同步通讯录</li>
+</ul>
+<p>Telegram的设计理念是「联系人应该是你真正认识的人」，所以对批量添加行为监控非常严格。</p>
+<h3 id="修改账号信息">修改账号信息</h3>
+<p>修改用户名（Username）、个人简介（Bio）、头像等操作都有频率限制：</p>
+<ul>
+<li><strong>用户名</strong>：不能频繁切换用户名（即使上一个是你自己的）</li>
+<li><strong>Bio简介</strong>：短时间内反复修改可能触发冷却</li>
+<li><strong>头像</strong>：连续更换多次会被暂时限制</li>
+</ul>
+<h3 id="api和bot调用开发者必看">API和Bot调用（开发者必看）</h3>
+<p>对于开发者和Bot运营者，这是最常见的429场景。Telegram Bot API的限制规则：</p>
+<ul>
+<li><strong>同一条消息</strong>：每秒最多30次请求</li>
+<li><strong>不同消息</strong>：每秒约20次请求</li>
+<li><strong>sendMessage等核心方法</strong>：同一chat中每秒约1条消息</li>
+<li><strong>全局上限</strong>：每个Bot每秒钟约30次请求</li>
+</ul>
+<p>超限后API会返回 <code>retry after</code> 字段，精确告诉你需要等待多少秒。</p>
+<h2 id="不同限制的持续时间">不同限制的持续时间</h2>
+<p>429限制不是一刀切的，不同类型的操作有不同长度的冷却时间：</p>
+<h3 id="短期限制秒级到分钟级">短期限制（秒级到分钟级）</h3>
+<ul>
+<li><strong>消息发送频率限制</strong>：通常 5-30 分钟</li>
+<li><strong>API调用超出限制</strong>：<code>retry after</code> 字段指定的秒数（通常 5-60 秒）</li>
+<li><strong>单次操作过快</strong>：几秒到几分钟</li>
+</ul>
+<p>短期限制通常不需要任何操作，等待自动解除即可。返回 <code>retry after</code> 的API限制非常精确——你只需要在代码中实现等待逻辑。</p>
+<h3 id="中期限制小时级到一天">中期限制（小时级到一天）</h3>
+<ul>
+<li><strong>加入群组/频道频率过高</strong>：几小时到24小时</li>
+<li><strong>批量添加联系人</strong>：12-24小时</li>
+<li><strong>给大量非联系人发私聊</strong>：24小时左右</li>
+</ul>
+<p>中期限制同样会自动解除，但等待时间更长。不要在限制期间继续尝试相同操作。</p>
+<h3 id="长期限制数天到永久">长期限制（数天到永久）</h3>
+<ul>
+<li><strong>严重滥用API</strong>：可能导致Bot被永久限制</li>
+<li><strong>大规模垃圾行为</strong>：可能伴随账号封禁</li>
+</ul>
+<p>如果限制超过3天未解除且 @SpamBot 显示账号仍有活跃限制，可以通过Telegram支持的Ask a Question渠道咨询。关于整个账号的限制排查，参考 <a href="/telegram-account-send-limit/">账户发送限制解除教程</a> 了解完整流程。</p>
+<h2 id="分场景解决方案">分场景解决方案</h2>
+<h3 id="场景一普通用户在客户端遇到429">场景一：普通用户在客户端遇到429</h3>
+<p><strong>立即操作：</strong></p>
+<ol>
+<li><strong>停止所有操作 5-10 分钟</strong>：不要反复点击重试，每点一次系统会重置冷却计时器</li>
+<li><strong>不要切换账号</strong>：在限制期间换另一个Telegram账号继续操作不会加速解除，反而会让你的IP也被标记</li>
+<li><strong>检查网络</strong>：如果使用了代理，尝试 <a href="/telegram-connection-diagnosis/">切换代理或直接连接</a> 排除网络问题</li>
+<li><strong>等冷却结束后恢复正常使用</strong>：恢复后的头几条消息保持正常频率，不要立即回到高频状态</li>
+</ol>
+<h3 id="场景二bot开发者处理429错误">场景二：Bot开发者处理429错误</h3>
+<p>作为开发者，你不能只是「等一等」——你需要在代码中优雅处理429：</p>
+<p><strong>正确的处理逻辑：</strong></p>
+<ol>
+<li><strong>拦截429响应</strong>：在所有API请求后检查HTTP状态码</li>
+<li><strong>读取retry_after参数</strong>：Telegram API的429响应体包含 <code>parameters.retry_after</code> 字段</li>
+<li><strong>实现指数退避（Exponential Backoff）</strong>：
+<ul>
+<li>第一次遇到429：等待 <code>retry_after</code> 秒后重试</li>
+<li>连续遇到429：等待时间翻倍（2x, 4x, 8x…）</li>
+<li>达到最大重试次数：记录错误日志，人工介入</li>
+</ul>
+</li>
+<li><strong>控制请求速率</strong>：
+<ul>
+<li>使用令牌桶（Token Bucket）算法控制请求速率</li>
+<li>保持每秒API请求数在20以内</li>
+<li>同一个chat中的sendMessage调用间隔至少1秒</li>
+</ul>
+</li>
+</ol>
+<p><strong>Bot开发的最佳实践：</strong></p>
+<ul>
+<li>使用官方推荐的Telegram Bot库（如python-telegram-bot、node-telegram-bot-api），它们通常内置了速率控制</li>
+<li>不要用 Bot 去群发消息——这既违反Telegram的使用条款，也100%会触发限制</li>
+<li>对于需要批量操作的场景（如频道管理），考虑使用Telegram的官方客户端API（MTProto）而不是Bot API</li>
+</ul>
+<h3 id="场景三频道和群组管理员">场景三：频道和群组管理员</h3>
+<p>管理大型频道或群组时容易触发限制的操作：</p>
+<ul>
+<li><strong>批量删除消息</strong>：删除速度过快会触发限制</li>
+<li><strong>频繁修改群组设置</strong>：短时间内修改群名、描述、权限</li>
+<li><strong>批量踢人或禁言</strong>：这是最高危的操作之一</li>
+</ul>
+<p><strong>建议策略：</strong></p>
+<ul>
+<li>使用Telegram的「慢速模式」而不是手动踢人</li>
+<li>批量操作时保持间隔（每操作一次等待2-3秒）</li>
+<li>将管理操作分散到不同时间段执行</li>
+</ul>
+<p>如果是因为群组发言限制导致的困惑，请参考 <a href="/telegram-group-send-restriction/">Telegram群组发言权限排查</a> 了解群组内部的限制机制。</p>
+<h2 id="如何从根本上避免-too-many-requests">如何从根本上避免 Too Many Requests</h2>
+<h3 id="调整使用习惯">调整使用习惯</h3>
+<ul>
+<li><strong>消息间隔</strong>：手动发送时，保持每条消息之间至少3-5秒的间隔</li>
+<li><strong>分段操作</strong>：如果需要加入10个群组，分3次操作，每次间隔30分钟</li>
+<li><strong>联系人添加</strong>：每天添加新联系人不超过20个</li>
+</ul>
+<h3 id="优化bot和自动化">优化Bot和自动化</h3>
+<ul>
+<li><strong>实现速率限制器（Rate Limiter）</strong>：在Bot代码中加入请求频率控制</li>
+<li><strong>利用 webhook</strong>：比起getUpdates轮询，webhook更高效且更不容易超频率</li>
+<li><strong>缓存数据</strong>：减少不必要的API调用（如频繁获取用户信息）</li>
+<li><strong>监控请求量</strong>：记录每日API调用次数，接近限额时主动降速</li>
+</ul>
+<h3 id="网络层面的考虑">网络层面的考虑</h3>
+<p>如果你的IP地址被暂时限制了：</p>
+<ul>
+<li>更换代理或VPN节点后重试</li>
+<li>避免使用共享IP的代理服务（这些IP可能已被大量滥用）</li>
+<li>在稳定的网络环境下使用Telegram</li>
+</ul>
+<p>网络相关问题请参考 <a href="/telegram-connection-diagnosis/">Telegram网络连接排查</a> 的完整指南。</p>
+<h2 id="常见问题">常见问题</h2>
+<hr>
+<p>Too Many Requests看似是一个烦人的限制，但它实际上是Telegram保持平台稳定性的重要机制。对于普通用户，控制操作节奏是唯一的预防方法。对于开发者，在代码中优雅地处理429错误是基本功——把 <code>retry_after</code> 当作一个友好的提示而不是一个障碍，你的Bot才会稳定可靠。</p>
+<p>如果遇到的是更严重的账户级别发送限制（而不是操作频率限制），请参考我们的 <a href="/telegram-account-send-limit/">账户发送限制解除教程</a> 了解完整排查流程，或查看 <a href="/telegram-send-faq-20/">发送失败FAQ</a> 专栏覆盖的所有发送问题。</p>
+<p class="notice">📢 声明：本文为 Telegram消息修复 原创教程，基于Telegram客户端实测编写，仅供参考。Telegram 相关商标归 Telegram Messenger LLP 所有。</p>
+<div class="faq-list">
+<div class="faq-item">
+  <div class="faq-q">Too Many Requests 和账户发送限制有什么区别？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">Too Many Requests 是操作频率触发的即时限制，通常持续几秒到几十分钟，错误代码为HTTP 429。账户发送限制是系统对你的账号行为模式评估后施加的长期限制，可能持续数小时到数天。两者的表现可能相似（都是发不了消息），但前者是「你操作太快了」，后者是「系统判定你的行为可疑」。</div></div>
+</div>
+<div class="faq-item">
+  <div class="faq-q">retry_after 的值准不准？提前重试会怎样？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">retry_after 的值是准确的。但如果你在 retry_after 秒内重试，服务器会返回新的429错误，并且冷却时间可能被重置甚至延长。不要提前重试——严格的等待才是最快的恢复方式。</div></div>
+</div>
+<div class="faq-item">
+  <div class="faq-q">Bot被429限制了，切换IP有用吗？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">对于Bot API的限制，限制是绑定在Bot Token上的，和IP地址无关。换IP没有任何效果。对于MTProto客户端API，IP可能是一个因素，但限制通常仍然主要绑定在账号上。</div></div>
+</div>
+<div class="faq-item">
+  <div class="faq-q">为什么我没有发很多消息也遇到了Too Many Requests？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">可能的其他原因：你在短时间内大量加入/退出群组、频繁更换个人资料信息（用户名/Bio/头像）、使用了第三方客户端、或者你的代理IP被其他用户滥用导致同IP限制。如果排除了这些因素，建议用 @SpamBot 检查账号状态。</div></div>
+</div>
+<div class="faq-item">
+  <div class="faq-q">Telegram Premium 能防止 Too Many Requests 吗？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">不能。Telegram Premium 提供更大的文件上传限制（4GB）、更快的下载速度、语音转文字等额外功能，但不会免除速率限制。Premium 用户和免费用户受到相同的 Flood Control 规则约束。这也是 Telegram 的公平原则之一。</div></div>
+</div>
+<div class="faq-item">
+  <div class="faq-q">用多个Bot分担负载能避免单个Bot的429限制吗？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">技术上可以，但这不是推荐的做法。Telegram的服务条款不允许为了绕过限制而创建多个Bot做相同的事情。正确的做法是在单个Bot中实现速率限制器和请求队列，而不是通过多个Bot分摊请求。滥用多个Bot可能导致所有Bot都被封禁。</div></div>
+</div>
+</div> </div> </article> <!-- Sidebar --> <aside class="art-side" data-astro-cid-yvbahnfj> <div class="sb-card" data-astro-cid-yvbahnfj> <h4 data-astro-cid-yvbahnfj>相关教程</h4> <a href="/telegram-account-send-limit/" class="sb-rel-item" data-astro-cid-yvbahnfj> <h5 data-astro-cid-yvbahnfj>Telegram账户发送限制解除教程：2026被限发消息怎么办</h5> </a> </div> <div class="sb-card" data-astro-cid-yvbahnfj> <h4 data-astro-cid-yvbahnfj>热门标签</h4> <div class="trend-tags" data-astro-cid-yvbahnfj> <a href="/articles/?category=network-fix" data-astro-cid-yvbahnfj>网络排查</a><a href="/articles/?category=account-limits" data-astro-cid-yvbahnfj>账户限制</a><a href="/articles/?category=file-send" data-astro-cid-yvbahnfj>文件发送</a><a href="/articles/?category=group-send" data-astro-cid-yvbahnfj>群组频道</a><a href="/articles/?category=send-faq" data-astro-cid-yvbahnfj>发送FAQ</a> </div> </div> </aside> </div>  </main> <!-- Footer --> <footer class="site-footer"> <div class="footer-inner"> <div class="footer-brand"> <div class="footer-logo">TG消息修复</div> <p class="footer-desc">本站为独立教程站点，非 Telegram 官方。所有内容基于公开信息整理。</p> <span class="footer-badge">📚 独立教程网站</span> </div> <div class="footer-col"> <h4>快速导航</h4> <ul> <li><a href="/">首页</a></li> <li><a href="/articles/">所有教程</a></li> <li><a href="/about/">关于我们</a></li> <li><a href="/sitemap/">网站地图</a></li> </ul> </div> <div class="footer-col"> <h4>教程分类</h4> <ul> <li><a href="/articles/?category=network-fix">网络排查</a></li><li><a href="/articles/?category=account-limits">账户限制</a></li><li><a href="/articles/?category=file-send">文件发送</a></li><li><a href="/articles/?category=group-send">群组频道</a></li><li><a href="/articles/?category=send-faq">发送FAQ</a></li> </ul> </div> <div class="footer-col"> <h4>支持</h4> <ul> <li><a href="/contact/">联系我们</a></li> <li><a href="/privacy/">隐私政策</a></li> </ul> </div> </div> <div class="footer-bottom"> <p>&copy; 2026 TG消息修复. All rights reserved.</p> </div> </footer> <!-- Inject global CSS (plain <style> avoids Astro's CSS processing) --> <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans SC',sans-serif;background:#ffffff;color:#1e293b;line-height:1.6}a{color:#7C3AED;text-decoration:none}a:hover{color:#A78BFA}.site-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);padding:0 24px}.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}.nav-logo{font-size:18px;font-weight:700;color:#7C3AED;text-decoration:none}.nav-links{display:flex;gap:24px}.nav-links a{font-size:14px;color:#475569;text-decoration:none;transition:color .2s}.nav-links a:hover,.nav-links a.active{color:#7C3AED}.breadcrumb{max-width:1100px;margin:0 auto;padding:16px 24px 0;font-size:13px;color:#94a3b8}.breadcrumb a{color:#7C3AED;text-decoration:none}.art-wrap{max-width:1100px;margin:0 auto;padding:24px;display:flex;gap:32px}.art-main{flex:1;min-width:0;background:#fff;border-radius:12px;padding:40px;box-shadow:0 1px 3px rgba(0,0,0,.04)}.art-main h1{font-size:28px;font-weight:800;line-height:1.4;margin-bottom:16px;color:#1e293b}.art-meta{display:flex;gap:16px;align-items:center;margin-bottom:24px;font-size:13px;color:#94a3b8}.art-tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px}.art-tag.network-fix{background:#f5f3ff;color:#5b21b6}.art-tag.account-limits{background:#ecfdf5;color:#065f46}.art-tag.file-send{background:#fef3c7;color:#92400e}.art-tag.group-send{background:#e0e7ff;color:#4338ca}.art-tag.send-faq{background:#fce7f3;color:#be185d}.art-body{font-size:15px;line-height:1.9;color:#475569}.art-body h2{font-size:22px;font-weight:700;margin:36px 0 16px;color:#1e293b}.art-body h3{font-size:18px;font-weight:600;margin:28px 0 12px;color:#1e293b}.art-body p{margin-bottom:16px}.art-body ul,.art-body ol{margin:12px 0 16px 24px}.art-body li{margin-bottom:8px}.art-body code{background:#f5f7fa;padding:2px 6px;border-radius:4px;font-size:13px;color:#e11d48}.art-body pre{background:#1e293b;color:#e2e8f0;padding:20px;border-radius:8px;overflow-x:auto;margin:16px 0;font-size:13px}.art-side{width:300px;flex-shrink:0}.sb-card{background:#fff;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.04)}.sb-card h4{font-size:14px;font-weight:700;margin-bottom:12px;color:#1e293b}.sb-rel-item{display:flex;gap:10px;margin-bottom:12px;text-decoration:none;color:inherit}.sb-rel-item:hover h5{color:#7C3AED}.sb-rel-item h5{font-size:13px;font-weight:500;line-height:1.4;transition:color .2s}.trend-tags{display:flex;flex-wrap:wrap;gap:8px}.trend-tags a{font-size:12px;padding:4px 12px;background:#f5f7fa;border-radius:16px;color:#475569;text-decoration:none;transition:all .2s}.trend-tags a:hover{background:#e0f2fe;color:#7C3AED}.info-box{background:#f0f9ff;border-left:4px solid #7C3AED;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0;font-size:14px}.warn-box{background:#fffbeb;border-left:4px solid #f59e0b;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0;font-size:14px}.warn-box strong{color:#92400e}.step-list{counter-reset:step;margin:20px 0}.step-card{background:#fff;border:1px solid #e8ecf1;border-radius:10px;padding:20px;margin-bottom:16px;counter-increment:step;position:relative;padding-left:64px}.step-card::before{content:counter(step);position:absolute;left:16px;top:20px;width:32px;height:32px;background:#7C3AED;color:#fff;border-radius:50%;text-align:center;line-height:32px;font-weight:700;font-size:14px}.faq-list{margin:24px 0}.faq-item{border:1px solid #e8ecf1;border-radius:8px;margin-bottom:8px;overflow:hidden}.faq-q{padding:16px 20px;cursor:pointer;font-weight:600;font-size:15px;background:#f5f7fa;user-select:none;display:flex;justify-content:space-between;align-items:center}.faq-q:hover{background:#f0f7ff}.faq-arrow{font-size:12px;transition:transform .3s;color:#94a3b8}.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-a-inner{padding:0 20px 16px;font-size:14px;color:#475569;line-height:1.7}.faq-item.open .faq-a{max-height:300px}.faq-item.open .faq-arrow{transform:rotate(180deg)}table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}th{background:#f0f7ff;padding:12px 16px;text-align:left;font-weight:600;border:1px solid #dce8f3}td{padding:12px 16px;border:1px solid #e8ecf1}.site-footer{background:#f0f7ff;border-top:1px solid #dce8f3;margin-top:80px}.footer-inner{max-width:1100px;margin:0 auto;padding:56px 24px 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}.footer-logo{font-size:20px;font-weight:700;color:#A78BFA;margin-bottom:12px}.footer-desc{font-size:13px;line-height:1.8;margin-bottom:16px;color:#475569}.footer-badge{display:inline-block;font-size:12px;background:#fff;color:#7C3AED;padding:6px 14px;border-radius:20px;font-weight:500;border:1px solid #b8ddf5}.footer-col h4{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:16px;letter-spacing:.02em}.footer-col ul{list-style:none}.footer-col li{margin-bottom:10px}.footer-col li a{font-size:13px;color:#475569;text-decoration:none;transition:color .2s}.footer-col li a:hover{color:#7C3AED}.footer-bottom{border-top:1px solid #dce8f3;text-align:center;padding:20px 24px;font-size:12px;color:#94a3b8}@media(max-width:768px){.nav-links{display:none}.art-wrap{flex-direction:column}.art-main{padding:24px}.art-side{width:100%}.footer-inner{grid-template-columns:1fr 1fr;gap:32px}.footer-brand{grid-column:1/-1}}@media(max-width:480px){.footer-inner{grid-template-columns:1fr}}</style> <!-- FAQ accordion JS --> <script>
+    document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.faq-q').forEach(function(q){q.addEventListener('click',function(){var item=q.parentElement;var open=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight='0'});if(!open){item.classList.add('open');item.querySelector('.faq-a').style.maxHeight='500px'}})})});
+  </script> </body> </html>

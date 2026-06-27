@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Telegram消息发送失败？全网排查流程：代理、DNS、防火墙、服务器状态逐项解决</title><meta name="description" content="Telegram消息发送失败全网排查流程完整教程，从代理配置错误检测、DNS解析劫持修复、Windows防火墙出站规则设置到路由器安全策略调整逐项讲解，附带错误提示含义对照表和分步修复指令，系统性解决TG消息发不出去的各种网络故障问题，附完整排查流程图。"><meta name="keywords" content="Telegram,消息发送失败,代理配置,DNS排查,防火墙,TG消息发不出去,Telegram发送失败修复"><link rel="canonical" href="https://tookd.com/telegram-send-message-failed/"><link rel="alternate" hreflang="zh-CN" href="https://tookd.com/telegram-send-message-failed/"><meta name="robots" content="index, follow"><!-- OG --><meta property="og:title" content="Telegram消息发送失败？全网排查流程：代理、DNS、防火墙、服务器状态逐项解决"><meta property="og:description" content="Telegram消息发送失败全网排查流程完整教程，从代理配置错误检测、DNS解析劫持修复、Windows防火墙出站规则设置到路由器安全策略调整逐项讲解，附带错误提示含义对照表和分步修复指令，系统性解决TG消息发不出去的各种网络故障问题，附完整排查流程图。"><meta property="og:url" content="https://tookd.com/telegram-send-message-failed/"><meta property="og:type" content="article"><meta property="og:image" content="https://tookd.com/images/og-default.png"><meta name="twitter:card" content="summary_large_image"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><!-- Structured Data --><script type="application/ld+json">[{"@context":"https://schema.org","@type":"Article","headline":"Telegram消息发送失败？全网排查流程：代理、DNS、防火墙、服务器状态逐项解决","description":"Telegram消息发送失败全网排查流程完整教程，从代理配置错误检测、DNS解析劫持修复、Windows防火墙出站规则设置到路由器安全策略调整逐项讲解，附带错误提示含义对照表和分步修复指令，系统性解决TG消息发不出去的各种网络故障问题，附完整排查流程图。","url":"https://tookd.com/telegram-send-message-failed/","datePublished":"2026-06-27","dateModified":"2026-06-27","author":{"@type":"Organization","name":"TG教程指南"},"inLanguage":"zh-CN","image":"https://tookd.com/images/og-default.png"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://tookd.com"},{"@type":"ListItem","position":2,"name":"Telegram消息发送失败？全网排查流程：代理、DNS、防火墙、服务器状态逐项解决"}]}]</script><style>.art-wrap[data-astro-cid-yvbahnfj]{max-width:1100px}</style></head> <body> <!-- Nav --> <nav class="site-nav"> <div class="nav-inner"> <a href="/" class="nav-logo">TG消息修复</a> <div class="nav-links"> <a href="/">首页</a> <a href="/articles/">所有教程</a> <a href="/articles/?category=network-fix">网络排查</a><a href="/articles/?category=account-limits">账户限制</a><a href="/articles/?category=file-send">文件发送</a><a href="/articles/?category=group-send">群组频道</a><a href="/articles/?category=send-faq">发送FAQ</a> </div> </div> </nav> <!-- Breadcrumb (article pages) --> <div class="breadcrumb"> <a href="/">首页</a> <span> &raquo; Telegram消息发送失败？全网排查流程：代理、DNS、防火墙、服务器状态逐项解决</span> </div> <main>  <div class="art-wrap" data-astro-cid-yvbahnfj> <article class="art-main" data-astro-cid-yvbahnfj> <h1 data-astro-cid-yvbahnfj>Telegram消息发送失败？全网排查流程：代理、DNS、防火墙、服务器状态逐项解决</h1> <div class="art-meta" data-astro-cid-yvbahnfj> <span data-astro-cid-yvbahnfj>📅 2026-06-27</span> <span class="art-tag network-fix" data-astro-cid-yvbahnfj>网络排查</span> </div> <div class="art-body" data-astro-cid-yvbahnfj> <img src="/images/og-default.png" alt="Telegram消息发送失败？全网排查流程：代理、DNS、防火墙、服务器状态逐项解决" style="width:100%; border-radius:8px; margin-bottom:24px;" data-astro-cid-yvbahnfj> <p>你有没有遇到过这种情况：打好了一长段文字，按下发送键，消息旁边出现一个小时钟图标，转了半天最后变成红色感叹号。</p>
+<p>或者更让人抓狂的：群组里其他人聊得热火朝天，只有你的消息发不出去。重启App、切换Wi-Fi、甚至重启手机都试过了，问题依然在。</p>
+<p>Telegram消息发送失败的原因远比”网络不好”复杂。它可能来自代理配置错误、DNS解析异常、防火墙拦截、Telegram服务器区域不可用、账户被临时限制，甚至是某个特定群组的权限设置。这篇文章会从网络层到应用层，逐一排查每一种可能性，并给出可操作的修复指令。</p>
+<p><strong>如果你正急着发消息，可以从<a href="#%E4%B8%89%E3%80%81DNS%E8%A7%A3%E6%9E%90%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5">第三步：DNS排查</a>开始——这是最常见也最容易修复的环节。</strong></p>
+<h2 id="一错误提示的含义先看懂信号">一、错误提示的含义——先看懂信号</h2>
+<p>Telegram发送失败时，不同的提示代表完全不同的故障点。盲目重试会浪费时间。</p>
+<h3 id="1-waiting-for-network等待网络连接">1. “Waiting for network…”（等待网络连接）</h3>
+<p>这个消息说明Telegram客户端根本连不上服务器。不是消息被拒，是请求根本没发出去。问题通常出在：</p>
+<ul>
+<li>设备没有互联网连接</li>
+<li>代理/VPN配置错误导致所有流量被拦截</li>
+<li>防火墙屏蔽了Telegram的通信端口</li>
+<li>DNS无法解析Telegram的服务器地址</li>
+</ul>
+<p><strong>快速验证</strong>：打开浏览器访问 <code>https://web.telegram.org/</code> 看看能不能加载。能加载说明网络本身是通的，问题在客户端或代理层面；不能加载说明网络环境已经到了连Telegram域名都访问不了的地步。</p>
+<h3 id="2-红色感叹号--too-many-requests">2. 红色感叹号 + “Too many requests”</h3>
+<p>这不是网络问题，是Telegram服务器主动拒绝了你的请求。原因：</p>
+<ul>
+<li>短时间内发送了大量消息（包括转发、群发）</li>
+<li>向陌生人发送了过多私信</li>
+<li>自动化脚本触发了反滥用（anti-spam）机制</li>
+</ul>
+<p><strong>修复方式</strong>：停止所有发送操作，等待15-30分钟。如果等了一小时后仍然报这个错误，需要联系 @SpamBot 申请解除限制。</p>
+<h3 id="3-this-message-is-too-long或file-is-too-large">3. “This message is too long”或”File is too large”</h3>
+<p>文本消息单条上限为4096字符。文件上限：普通用户2GB，Telegram Premium用户4GB。</p>
+<ul>
+<li>长文本：拆成多条发送，或用Telegraph写长文后分享链接</li>
+<li>大文件：分卷压缩（每个卷不超过2GB），或上传到云端共享链接</li>
+</ul>
+<h3 id="4-消息已发送但对方收不到一个勾但永远不变成两个勾">4. 消息已发送但对方收不到（一个勾但永远不变成两个勾）</h3>
+<p>一个勾=消息已从你的设备发出并到达Telegram服务器。两个勾=服务器已推送到对方设备。</p>
+<p>长期只有一个勾，可能的原因：</p>
+<ul>
+<li>对方把你拉黑了</li>
+<li>对方删除了Telegram账号</li>
+<li>对方设备长期离线</li>
+<li>对方主动设置了不接受非联系人消息</li>
+</ul>
+<h2 id="二代理与vpn配置排查">二、代理与VPN配置排查</h2>
+<p>国内用户最常遇到的发送失败场景，几乎都和代理有关。</p>
+<h3 id="代理类型的选择">代理类型的选择</h3>
+<p>Telegram 支持的代理类型包括 SOCKS5、HTTP、MTProto。不同代理类型对消息发送的影响差异很大：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>代理类型</th><th>稳定性</th><th>消息发送兼容性</th><th>推荐度</th></tr></thead><tbody><tr><td><strong>MTProto 代理</strong></td><td>★★★★★</td><td>完美支持所有消息类型</td><td>首选</td></tr><tr><td><strong>SOCKS5 代理</strong></td><td>★★★★☆</td><td>大文件偶尔超时</td><td>推荐</td></tr><tr><td><strong>HTTP 代理</strong></td><td>★★★☆☆</td><td>不支持UDP/语音通话</td><td>可用</td></tr><tr><td><strong>免费公共代理</strong></td><td>★★☆☆☆</td><td>极不稳定，频繁断连</td><td>不推荐</td></tr></tbody></table>
+<p><strong>MTProto 代理是 Telelgram 官方深度集成的代理方案</strong>，消息、文件、通话全部走代理通道，不会出现部分功能能用、部分不能用的情况。</p>
+<h3 id="代理配置检查步骤">代理配置检查步骤</h3>
+<p><strong>PC/桌面版检查：</strong></p>
+<ol>
+<li>打开 Telegram → Settings → Advanced → Connection Type</li>
+<li>确认代理状态为”Connected”而非”Connecting…”或”Unavailable”</li>
+<li>如果显示”Connecting…”超过5秒，说明代理服务器不可达</li>
+<li>点击代理条目查看连接详情：延迟（ping）应低于300ms，可用性（availability）应大于90%</li>
+</ol>
+<p><strong>手机版检查：</strong></p>
+<ol>
+<li>Telegram → Settings → Data and Storage → Proxy</li>
+<li>确认代理开关已打开</li>
+<li>轻点代理条目查看”已连接”状态</li>
+<li>如果”Ping”值显示”-“或超过1000ms，立即切换代理</li>
+</ol>
+<h3 id="代理故障的三种常见场景和修复">代理故障的三种常见场景和修复</h3>
+<p><strong>场景一：代理服务器已关闭/过期</strong></p>
+<p>代理提供商停了服务，或者你用的免费代理下线了。表现是：所有Telegram功能同时失效，包括消息、频道刷新、联系人列表更新。</p>
+<p><strong>修复</strong>：换一个新的代理地址。优先使用MTProto代理，配置方法和SOCKS5不同——MTProto需要填入Server、Port和Secret，不需要用户名和密码。</p>
+<p><strong>场景二：代理配置写错了</strong></p>
+<p>SOCKS5代理需要填写IP/域名、端口、用户名（可选）、密码（可选）四项。最常见的手误是端口号和代理类型不匹配（如把SOCKS5端口填入了MTProto类型的配置入口）。</p>
+<p><strong>修复</strong>：从代理提供商处重新获得完整配置信息，逐项核对：</p>
+<ul>
+<li>Server地址是否包含多余空格</li>
+<li>端口是否为纯数字（常见：1080、443、8443、8888）</li>
+<li>用户名和密码区分大小写</li>
+</ul>
+<p><strong>场景三：代理延迟过高导致超时</strong></p>
+<p>消息发送有超时限制（通常30-60秒）。如果代理延迟持续在500ms以上，大消息或有媒体附件的消息几乎必然超时。</p>
+<p><strong>修复</strong>：</p>
+<ul>
+<li>换一个ping低于200ms的代理节点</li>
+<li>暂时切换到蜂窝数据直接连接（如果Telegram在你的网络中不需要代理）</li>
+<li>使用多个代理地址设置”Failover”，Telegram会自动切换到可用的代理</li>
+</ul>
+<h3 id="vpn的注意事项">VPN的注意事项</h3>
+<p>如果你用的是VPN而非Telegram内置代理：</p>
+<ul>
+<li><strong>全局代理模式</strong>比”分流模式”更稳定（分流规则可能漏掉Telegram的某些连接）</li>
+<li>UDP转发必须开启（Telegram语音和视频通话走UDP）</li>
+<li>如果VPN使用WireGuard协议，确保MTU设置不低于1280，否则大消息会被分片失败</li>
+</ul>
+<h2 id="三dns解析问题排查">三、DNS解析问题排查</h2>
+<p>DNS（域名解析）是把”telegram.org”域名转换成服务器IP地址的服务。DNS出问题时，Telegram客户端连服务器在哪都不知道。</p>
+<h3 id="为什么dns会影响消息发送">为什么DNS会影响消息发送？</h3>
+<p>Telegram客户端运行时，需要持续连接多个服务器地址：</p>
+<ul>
+<li><code>pluto.telegram.org</code> — 主数据中心入口</li>
+<li><code>venus.telegram.org</code> — 备用数据中心</li>
+<li><code>*.web.telegram.org</code> — Web协议接入点</li>
+<li><code>dc*.telegram.org</code> — 各数据中心直连地址</li>
+</ul>
+<p><strong>如果DNS服务器返回错误结果或被劫持</strong>，你的Telegram会尝试连接假地址，表现就是消息一直转圈，最终失败。</p>
+<h3 id="dns故障的诊断方法">DNS故障的诊断方法</h3>
+<p><strong>Windows：</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="cmd"><code><span class="line"><span style="color:#E1E4E8">nslookup telegram.org</span></span></code></pre>
+<p>正常返回应该包含多个IP地址，如 <code>149.154.167.99</code> 和 <code>149.154.175.100</code>。如果返回了非Telegram的IP地址（比如显示为国内CDN的IP），说明DNS被劫持。</p>
+<p><strong>Mac / Linux：</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#B392F0">dig</span><span style="color:#9ECBFF"> telegram.org</span></span></code></pre>
+<p>查看 ANSWER SECTION 中的IP地址是否正确。Telegram的IP属于 <code>149.154.*.*</code> 网段。</p>
+<p><strong>手机端快速检查：</strong></p>
+<p>用浏览器访问 <code>https://149.154.167.99/</code>（Telegram主数据中心直连IP，绕过DNS）。如果浏览器能访问，但Telegram App连不上，基本确定是DNS问题。</p>
+<h3 id="dns问题修复方案">DNS问题修复方案</h3>
+<p><strong>方案一：更换DNS服务器</strong></p>
+<p>把DNS改为公共DNS服务，避免运营商劫持：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>DNS服务</th><th>主DNS</th><th>备用DNS</th></tr></thead><tbody><tr><td>Cloudflare</td><td>1.1.1.1</td><td>1.0.0.1</td></tr><tr><td>Google DNS</td><td>8.8.8.8</td><td>8.8.4.4</td></tr><tr><td>Quad9</td><td>9.9.9.9</td><td>149.112.112.112</td></tr><tr><td>OpenDNS</td><td>208.67.222.222</td><td>208.67.220.220</td></tr></tbody></table>
+<p><strong>Windows修改DNS：</strong></p>
+<ol>
+<li>控制面板 → 网络和共享中心 → 更改适配器设置</li>
+<li>右键当前使用的网络 → 属性 → Internet 协议版本4 (TCP/IPv4) → 属性</li>
+<li>选择”使用下面的DNS服务器地址”</li>
+<li>填入首选DNS和备用DNS</li>
+<li>确定后，打开cmd运行 <code>ipconfig /flushdns</code> 清除DNS缓存</li>
+</ol>
+<p><strong>方案二：修改hosts文件</strong></p>
+<p>如果DNS被劫持后无法通过更换DNS解决（运营商在出口路由做了强制重定向），可以手动写入hosts：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>149.154.167.99 telegram.org</span></span>
+<span class="line"><span>149.154.175.100 web.telegram.org</span></span>
+<span class="line"><span>149.154.167.51 pluto.telegram.org</span></span></code></pre>
+<p><strong>Windows hosts路径</strong>：<code>C:\Windows\System32\drivers\etc\hosts</code>（需管理员权限）</p>
+<blockquote>
+<p>⚠️ 注意：手动写入hosts后，如果Telegram更换了服务器IP（虽然很少发生），消息发送又会失败。建议配合DNS方案一使用，hosts作为最后的兜底手段。</p>
+</blockquote>
+<h2 id="四防火墙与安全软件拦截排查">四、防火墙与安全软件拦截排查</h2>
+<p>Windows Defender防火墙、第三方杀毒软件、甚至路由器自带的安全策略，都可能把Telegram的通信阻断掉。</p>
+<h3 id="防火墙是怎么拦截消息的">防火墙是怎么拦截消息的？</h3>
+<p>Telegram使用了多种通信协议和端口：</p>
+<ul>
+<li><strong>TCP 443</strong> — HTTPS加密通信（主要消息通道）</li>
+<li><strong>TCP 80</strong> — HTTP回退通道</li>
+<li><strong>TCP 5222</strong> — MTProto代理通信</li>
+<li><strong>UDP</strong> — 语音和视频通话</li>
+</ul>
+<p>防火墙的拦截方式有两种：</p>
+<ol>
+<li><strong>端口级拦截</strong>：直接把上述端口的所有流量封掉。这种情况Telegram所有功能都会失效。</li>
+<li><strong>深度包检测（DPI）</strong>：分析流量特征，识别出”这是Telegram的数据包”然后丢弃。这种情况下浏览器能上网，只有Telegram不行。</li>
+</ol>
+<h3 id="windows防火墙排查">Windows防火墙排查</h3>
+<p><strong>检查Telegram是否在防火墙放行列表中：</strong></p>
+<ol>
+<li>控制面板 → Windows Defender防火墙 → 允许应用或功能通过Windows Defender防火墙</li>
+<li>在列表中找到”Telegram Desktop”</li>
+<li>确保”专用”和”公用”两个复选框都已勾选</li>
+<li>如果列表中没有Telegram Desktop：点击”允许其他应用” → 浏览 → 找到Telegram安装目录下的 <code>Telegram.exe</code></li>
+</ol>
+<p><strong>高级排查：检查出站规则</strong></p>
+<ol>
+<li>Windows Defender防火墙 → 高级设置</li>
+<li>点击”出站规则”</li>
+<li>查看是否有规则拦截了Telegram相关的端口或程序</li>
+<li>如果有可疑的出站阻止规则，右键禁用测试</li>
+</ol>
+<h3 id="路由器防火墙检查">路由器防火墙检查</h3>
+<p>部分路由器默认启用了”安全防护”或”家长控制”功能，会拦截以下内容：</p>
+<ul>
+<li>“即时通讯”类流量</li>
+<li>加密流量（出于安全扫描目的而解密失败后直接拒绝）</li>
+<li>非标准端口通信</li>
+</ul>
+<p><strong>检查步骤：</strong></p>
+<ol>
+<li>浏览器登录路由器管理页面（通常是 192.168.1.1 或 192.168.0.1）</li>
+<li>找到”安全设置”、“防火墙”或”访问控制”等菜单</li>
+<li>暂时关闭”应用层网关（ALG）”、“SIP ALG”等应用识别功能</li>
+<li>检查”URL过滤”或”域名过滤”中是否误封了 <code>telegram.org</code></li>
+<li>保存设置后重启路由器</li>
+</ol>
+<h3 id="第三方安全软件">第三方安全软件</h3>
+<p>360安全卫士、火绒、腾讯电脑管家等第三方软件，有时会把Telegram的加密流量误判为异常行为。</p>
+<p><strong>快速测试方法</strong>：临时退出所有安全软件（注意：不是卸载，是右键托盘图标选择”退出”），然后测试Telegram消息发送。如果退出后能正常发送，说明是安全软件的干扰。</p>
+<p><strong>永久修复</strong>：在安全软件中把Telegram添加到”信任列表”或”排除列表”。具体路径因软件不同有差异，一般都在”实时防护”→“排除项”或”信任区”中设置。把Telegram的安装目录和 <code>%AppData%\Telegram Desktop</code> 都加进去。</p>
+<h2 id="五telegram服务器状态检查">五、Telegram服务器状态检查</h2>
+<p>有时候问题完全不在你这边——Telegram自己的服务器挂了。</p>
+<h3 id="如何确认是服务器端的问题">如何确认是服务器端的问题</h3>
+<p><strong>官方渠道：</strong></p>
+<ol>
+<li>Twitter/X 关注 @Telegram 官方账号查看公告</li>
+<li>访问 Telegram Bugs &#x26; Suggestions 平台（bugs.telegram.org）看是否有大量同类问题报告</li>
+</ol>
+<p><strong>社区验证：</strong></p>
+<ol>
+<li>打开 DownDetector 等第三方监控网站，搜索 “Telegram”</li>
+<li>查看过去24小时的故障报告曲线。如果曲线突然飙升，说明是大面积故障</li>
+<li>查看报告的地理分布：如果是区域性故障，换一个代理出口地区可能有效</li>
+</ol>
+<p><strong>自己动手验证：</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># 用命令行测试Telegram主服务器的连通性</span></span>
+<span class="line"><span style="color:#B392F0">ping</span><span style="color:#79B8FF"> 149.154.167.99</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># 测试HTTPS端口是否开放（需要telnet）</span></span>
+<span class="line"><span style="color:#B392F0">telnet</span><span style="color:#79B8FF"> 149.154.167.99</span><span style="color:#79B8FF"> 443</span></span></code></pre>
+<p>或者直接用浏览器访问 <code>https://149.154.167.99/</code>。如果浏览器能打开一个展示Telegram信息的网页，说明服务器在线、网络通路正常；如果超时，说明IP不可达。</p>
+<h3 id="服务器区域性不可用">服务器区域性不可用</h3>
+<p>Telegram在全球有多个数据中心。不同的数据中心服务于不同的地理区域：</p>
+<ul>
+<li><strong>DC1</strong>：美国（149.154.175.*）</li>
+<li><strong>DC2</strong>：荷兰（149.154.167.*）</li>
+<li><strong>DC3</strong>：美国迈阿密（149.154.171.*）</li>
+<li><strong>DC4</strong>：亚洲（149.154.165.*）</li>
+<li><strong>DC5</strong>：新加坡（91.108.56.*）</li>
+</ul>
+<p><strong>如果你的账号注册在某个数据中心，但该数据中心在你当前的网络环境中不可达</strong>，消息就发不出去。换一个代理出口IP到不同地区（如新加坡→荷兰），往往能绕过区域性屏蔽。</p>
+<h3 id="服务器维护与功能下线">服务器维护与功能下线</h3>
+<p>偶尔Telegram会进行计划内维护，导致部分功能暂时不可用。维护期间的表现：</p>
+<ul>
+<li>消息发送出现短暂的延迟（几秒到几分钟）</li>
+<li>媒体文件上传失败或很慢</li>
+<li>某些Bot服务无响应</li>
+</ul>
+<p>遇到这种情况没有特别好的办法，等就是了。Telegram的维护通常不会超过30分钟。如果持续超过2小时还没恢复，回到前面的代理和DNS排查。</p>
+<h2 id="六完整的排查流程图">六、完整的排查流程图</h2>
+<p>把上面所有排查步骤串起来，形成一个可以直接操作的标准流程：</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>消息发送失败</span></span>
+<span class="line"><span>│</span></span>
+<span class="line"><span>├─① 先看错误提示</span></span>
+<span class="line"><span>│   ├─ "Waiting for network" → 走②网络排查</span></span>
+<span class="line"><span>│   ├─ "Too many requests" → 等30分钟 → 联系@SpamBot</span></span>
+<span class="line"><span>│   ├─ "File too large" → 压缩/分卷/云端链接</span></span>
+<span class="line"><span>│   └─ 无提示但发不出去 → 继续②</span></span>
+<span class="line"><span>│</span></span>
+<span class="line"><span>├─② 检查网络环境</span></span>
+<span class="line"><span>│   ├─ 浏览器访问 web.telegram.org → 能加载?</span></span>
+<span class="line"><span>│   │   ├─ 能 → 问题在客户端，跳③</span></span>
+<span class="line"><span>│   │   └─ 不能 → 整个网络不通Telegram，跳④</span></span>
+<span class="line"><span>│   │</span></span>
+<span class="line"><span>│   ├─③ 代理排查</span></span>
+<span class="line"><span>│   │   ├─ 代理状态是否为Connected？</span></span>
+<span class="line"><span>│   │   ├─ Ping &#x3C; 200ms？</span></span>
+<span class="line"><span>│   │   └─ 代理类型是否兼容？</span></span>
+<span class="line"><span>│   │       └─ 不是 → 更换代理/切换MTProto</span></span>
+<span class="line"><span>│   │</span></span>
+<span class="line"><span>│   └─④ DNS排查</span></span>
+<span class="line"><span>│       ├─ nslookup telegram.org → 返回正确IP？</span></span>
+<span class="line"><span>│       ├─ 更换DNS为1.1.1.1</span></span>
+<span class="line"><span>│       ├─ 手动添加hosts</span></span>
+<span class="line"><span>│       └─ 再试 → 还不行？跳⑤</span></span>
+<span class="line"><span>│</span></span>
+<span class="line"><span>├─⑤ 防火墙与安全软件</span></span>
+<span class="line"><span>│   ├─ 临时退出杀毒软件 → 测试</span></span>
+<span class="line"><span>│   ├─ 检查Windows防火墙出站规则</span></span>
+<span class="line"><span>│   ├─ 检查路由器安全设置</span></span>
+<span class="line"><span>│   └─ 再试 → 还不行？跳⑥</span></span>
+<span class="line"><span>│</span></span>
+<span class="line"><span>└─⑥ 服务器端</span></span>
+<span class="line"><span>    ├─ 检查DownDetector/官方公告</span></span>
+<span class="line"><span>    ├─ ping/telnet 149.154.167.99</span></span>
+<span class="line"><span>    └─ 换代理出口地区（切换数据中心）</span></span></code></pre>
+<p><strong>大多数情况第三步（代理排查）就能解决问题。</strong> DNS和防火墙问题虽然可能性较低，但一旦遇到就非常棘手，需要仔细排查。</p>
+<h2 id="七特殊情况特定群组联系人发送失败">七、特殊情况：特定群组/联系人发送失败</h2>
+<h3 id="只对某些人发不出去">只对某些人发不出去</h3>
+<p>如果给张三能发，给李四发不出去，问题在对方的设置：</p>
+<ul>
+<li><strong>被拉黑（Blocked）</strong>：对方把你拉入了黑名单。表现为：你发消息永远只有一个勾，你看不到对方的在线状态，对方头像可能变成灰色或首字母缩写。如果不确定是不是被拉黑，可以尝试在群组中@对方看对方是否回复。</li>
+<li><strong>对方账号已删除</strong>：Telegram有自毁机制，可以在Settings → Privacy and Security → Delete my account if away for 中设置自动删除。如果对方设置了1个月自动删除且长期未登录，账号可能已经不存在了。</li>
+<li><strong>对方只接受联系人消息</strong>：Telegram隐私设置中有一项「Who can send me messages?」，设为”My Contacts”后，非联系人发的消息不会送达。另外关于Telegram隐私设置的完整解读，可以在本站的 <a href="/telegram-send-faq-20/">Telegram隐私设置指南</a> 中找到详细说明。</li>
+</ul>
+<h3 id="只在某个群组发不出去">只在某个群组发不出去</h3>
+<ul>
+<li><strong>慢速模式（Slow Mode）</strong>：群组管理员开启后，每个成员在指定时间间隔内只能发一条消息（常见设置：30秒、1分钟、5分钟）。发完一条后需要等待倒计时结束才能发下一条。表现为：输入框下方显示倒计时，发送按钮灰色。</li>
+<li><strong>禁言（Muted）</strong>：管理员单独禁言了你的发言权限。表现为：输入框灰掉或完全消失，你只能看不能发。</li>
+<li><strong>群组已转为只读</strong>：有些群组在达到一定规模后会关闭普通成员的发言权限，只有管理员可以发言。</li>
+<li><strong>群组被封或解散</strong>：如果群组被Telegram官方封禁（通常因为违规内容），所有成员都无法发送消息。表现为群名变成灰色或被替换为”Group is inaccessible”。</li>
+</ul>
+<h3 id="文件一直卡在uploading">文件一直卡在”Uploading…”</h3>
+<p>这与消息文本发送失败的原因完全不同。文件上传需要稳定的带宽，且Telegram对上传有额外的超时限制：</p>
+<ul>
+<li><strong>文件超过1GB</strong>：上传耗时较长，中途网络波动可能导致失败。建议在稳定的Wi-Fi环境下上传大文件。</li>
+<li><strong>代理不支持大文件传输</strong>：部分SOCKS5代理服务商限制了单连接的数据传输量上限。切换到MTProto代理通常能解决。</li>
+<li><strong>服务器繁忙</strong>：高峰期Telegram可能会降低上传速率。换个时间段重试。</li>
+</ul>
+<hr>
+<h2 id="常见问题">常见问题</h2>
+<div class="faq-list">
+<div class="faq-item">
+<div class="faq-q">Q: 消息发送显示"Waiting for network"但其他App都能上网，怎么办？<span class="faq-arrow">▼</span></div>
+<div class="faq-a"><div class="faq-a-inner">A: 其他App能上网但Telegram不能，99%是代理配置出了问题。Telegram默认走代理通道，而浏览器和其他App走的是系统直连或VPN全局通道。检查Telegram Settings → Data and Storage → Proxy 中的代理状态。如果代理不可用，临时关闭代理看消息能不能发。另一个可能是防火墙或DPI对Telegram做了针对性拦截，需要参考本文第四节进行排查。</div></div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: 为什么我换了三个代理都发不出消息？<span class="faq-arrow">▼</span></div>
+<div class="faq-a"><div class="faq-a-inner">A: 如果换了多个代理都不行，那就不是代理的问题了。请按顺序排查：① DNS是否被劫持（换1.1.1.1测试）② 是否有防火墙或安全软件拦截（临时退出测试）③ Telegram服务器是否正在故障（查DownDetector）。另外一种可能是你的Telegram客户端版本过旧，不兼容当前服务器协议。建议到官网下载最新版本：<a href="/telegram-send-message-failed/">Telegram官方下载安装教程</a>。</div></div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: 消息发出去只有一个勾，永远不变成两个勾是什么原因？<span class="faq-arrow">▼</span></div>
+<div class="faq-a"><div class="faq-a-inner">A: 一个勾表示消息已成功送达Telegram服务器。不变成两个勾说明服务器无法推送到对方设备，原因可能是：① 对方拉黑了你 ② 对方删除了账号 ③ 对方设备长期断网 ④ 对方的隐私设置拒绝接收非联系人消息。需要说明的是，这和你的网络或代理没有关系——消息已经离开你的设备了，问题在接收方。</div></div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: Telegram网页版能发消息，客户端不行，怎么修？<span class="faq-arrow">▼</span></div>
+<div class="faq-a"><div class="faq-a-inner">A: 网页版能发但客户端不能，说明Telegram服务器和你的网络是通的，问题锁定在客户端配置。请逐一检查：① 客户端代理设置是否正确（网页版可能走了浏览器代理，客户端没有）② 客户端是否被防火墙拦截（对照第四节检查Windows防火墙出站规则）③ 尝试退出客户端后删除 %AppData%\Telegram Desktop 下的缓存文件（保留 tdata 文件夹），重新打开客户端登录。</div></div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: 消息发送极慢（转圈10秒以上才发出），怎么加速？<span class="faq-arrow">▼</span></div>
+<div class="faq-a"><div class="faq-a-inner">A: 发送延迟高通常是代理延迟过高导致的。解决方法：① 换一个ping低于100ms的代理节点 ② 优先使用MTProto代理（MTProto的握手和加密效率高于SOCKS5）③ 如果使用VPN，确保连接到地理位置更近的节点。另外，如果你的消息包含大文件或图片且在压缩中，这部分处理时间也会算在"发送"过程中——可以试试关闭Settings中的"发送前压缩图片"选项，改用手动压缩后再发送。</div></div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: 提示"Too many requests"要等多久？能加速解除吗？<span class="faq-arrow">▼</span></div>
+<div class="faq-a"><div class="faq-a-inner">A: 一般需要等待15分钟到1小时，长短取决于触发频率。如果是第一次触发，可能15分钟就能恢复；如果频繁触发，等待时间会逐次延长。没有官方方法加速解除。如果等了2小时仍然无法发送消息，联系 @SpamBot 发送 /start 然后按照指引操作。如果账号被判定为spam导致永久限制，账户层面的排查请参考本站的 <a href="/telegram-account-send-limit/">Telegram账号异常恢复教程</a> 中关于账号申诉的部分。</div></div>
+</div>
+<div class="faq-item">
+<div class="faq-q">Q: 在公司/学校网络里Telegram消息发不出去，在家就能发，是网络封锁吗？<span class="faq-arrow">▼</span></div>
+<div class="faq-a"><div class="faq-a-inner">A: 大概率是公司/学校的网络管理员在路由器或防火墙上做了针对性封锁。常见的封锁手段包括：端口封锁（443端口对外部特定IP阻断）、域名封锁（将telegram.org加入DNS黑名单）、DPI深度包检测拦截Telegram流量特征。解决方式通常只有两种：① 使用手机蜂窝数据代替公司Wi-Fi ② 在工作设备上配置代理/VPN（但需要注意公司IT政策是否允许）。</div></div>
+</div>
+</div>
+<hr>
+<p>这篇文章涵盖了Telegram消息发送失败的绝大多数场景。建议把 <a href="#%E5%85%AD%E3%80%81%E5%AE%8C%E6%95%B4%E7%9A%84%E6%8E%92%E6%9F%A5%E6%B5%81%E7%A8%8B%E5%9B%BE">第五节排查流程图</a> 收藏起来，下次遇到发送问题时按图逐级排查，通常在第三步之前就能找到原因。</p>
+<p>平时保持代理节点稳定、DNS配置正确、防火墙规则合理，Telegram的消息发送体验应该是秒发级的。如果消息发送问题解决了但还有其他连接问题（如频道刷不出来、语音通话断断续续），请继续阅读我们的 <a href="/telegram-connection-diagnosis/">Telegram连接诊断与网络优化教程</a>，从更深层的网络层面优化Telegram使用体验。</p>
+<p class="notice">📢 声明：本文为 Telegram消息修复 原创教程，基于Telegram客户端实测编写，仅供参考。Telegram 相关商标归 Telegram Messenger LLP 所有。</p> </div> </article> <!-- Sidebar --> <aside class="art-side" data-astro-cid-yvbahnfj> <div class="sb-card" data-astro-cid-yvbahnfj> <h4 data-astro-cid-yvbahnfj>相关教程</h4> <a href="/telegram-connection-diagnosis/" class="sb-rel-item" data-astro-cid-yvbahnfj> <h5 data-astro-cid-yvbahnfj>Telegram连接诊断全攻略：从Ping值到MTU的网络优化教程</h5> </a> </div> <div class="sb-card" data-astro-cid-yvbahnfj> <h4 data-astro-cid-yvbahnfj>热门标签</h4> <div class="trend-tags" data-astro-cid-yvbahnfj> <a href="/articles/?category=network-fix" data-astro-cid-yvbahnfj>网络排查</a><a href="/articles/?category=account-limits" data-astro-cid-yvbahnfj>账户限制</a><a href="/articles/?category=file-send" data-astro-cid-yvbahnfj>文件发送</a><a href="/articles/?category=group-send" data-astro-cid-yvbahnfj>群组频道</a><a href="/articles/?category=send-faq" data-astro-cid-yvbahnfj>发送FAQ</a> </div> </div> </aside> </div>  </main> <!-- Footer --> <footer class="site-footer"> <div class="footer-inner"> <div class="footer-brand"> <div class="footer-logo">TG消息修复</div> <p class="footer-desc">本站为独立教程站点，非 Telegram 官方。所有内容基于公开信息整理。</p> <span class="footer-badge">📚 独立教程网站</span> </div> <div class="footer-col"> <h4>快速导航</h4> <ul> <li><a href="/">首页</a></li> <li><a href="/articles/">所有教程</a></li> <li><a href="/about/">关于我们</a></li> <li><a href="/sitemap/">网站地图</a></li> </ul> </div> <div class="footer-col"> <h4>教程分类</h4> <ul> <li><a href="/articles/?category=network-fix">网络排查</a></li><li><a href="/articles/?category=account-limits">账户限制</a></li><li><a href="/articles/?category=file-send">文件发送</a></li><li><a href="/articles/?category=group-send">群组频道</a></li><li><a href="/articles/?category=send-faq">发送FAQ</a></li> </ul> </div> <div class="footer-col"> <h4>支持</h4> <ul> <li><a href="/contact/">联系我们</a></li> <li><a href="/privacy/">隐私政策</a></li> </ul> </div> </div> <div class="footer-bottom"> <p>&copy; 2026 TG消息修复. All rights reserved.</p> </div> </footer> <!-- Inject global CSS (plain <style> avoids Astro's CSS processing) --> <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans SC',sans-serif;background:#ffffff;color:#1e293b;line-height:1.6}a{color:#7C3AED;text-decoration:none}a:hover{color:#A78BFA}.site-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);padding:0 24px}.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}.nav-logo{font-size:18px;font-weight:700;color:#7C3AED;text-decoration:none}.nav-links{display:flex;gap:24px}.nav-links a{font-size:14px;color:#475569;text-decoration:none;transition:color .2s}.nav-links a:hover,.nav-links a.active{color:#7C3AED}.breadcrumb{max-width:1100px;margin:0 auto;padding:16px 24px 0;font-size:13px;color:#94a3b8}.breadcrumb a{color:#7C3AED;text-decoration:none}.art-wrap{max-width:1100px;margin:0 auto;padding:24px;display:flex;gap:32px}.art-main{flex:1;min-width:0;background:#fff;border-radius:12px;padding:40px;box-shadow:0 1px 3px rgba(0,0,0,.04)}.art-main h1{font-size:28px;font-weight:800;line-height:1.4;margin-bottom:16px;color:#1e293b}.art-meta{display:flex;gap:16px;align-items:center;margin-bottom:24px;font-size:13px;color:#94a3b8}.art-tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px}.art-tag.network-fix{background:#f5f3ff;color:#5b21b6}.art-tag.account-limits{background:#ecfdf5;color:#065f46}.art-tag.file-send{background:#fef3c7;color:#92400e}.art-tag.group-send{background:#e0e7ff;color:#4338ca}.art-tag.send-faq{background:#fce7f3;color:#be185d}.art-body{font-size:15px;line-height:1.9;color:#475569}.art-body h2{font-size:22px;font-weight:700;margin:36px 0 16px;color:#1e293b}.art-body h3{font-size:18px;font-weight:600;margin:28px 0 12px;color:#1e293b}.art-body p{margin-bottom:16px}.art-body ul,.art-body ol{margin:12px 0 16px 24px}.art-body li{margin-bottom:8px}.art-body code{background:#f5f7fa;padding:2px 6px;border-radius:4px;font-size:13px;color:#e11d48}.art-body pre{background:#1e293b;color:#e2e8f0;padding:20px;border-radius:8px;overflow-x:auto;margin:16px 0;font-size:13px}.art-side{width:300px;flex-shrink:0}.sb-card{background:#fff;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.04)}.sb-card h4{font-size:14px;font-weight:700;margin-bottom:12px;color:#1e293b}.sb-rel-item{display:flex;gap:10px;margin-bottom:12px;text-decoration:none;color:inherit}.sb-rel-item:hover h5{color:#7C3AED}.sb-rel-item h5{font-size:13px;font-weight:500;line-height:1.4;transition:color .2s}.trend-tags{display:flex;flex-wrap:wrap;gap:8px}.trend-tags a{font-size:12px;padding:4px 12px;background:#f5f7fa;border-radius:16px;color:#475569;text-decoration:none;transition:all .2s}.trend-tags a:hover{background:#e0f2fe;color:#7C3AED}.info-box{background:#f0f9ff;border-left:4px solid #7C3AED;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0;font-size:14px}.warn-box{background:#fffbeb;border-left:4px solid #f59e0b;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0;font-size:14px}.warn-box strong{color:#92400e}.step-list{counter-reset:step;margin:20px 0}.step-card{background:#fff;border:1px solid #e8ecf1;border-radius:10px;padding:20px;margin-bottom:16px;counter-increment:step;position:relative;padding-left:64px}.step-card::before{content:counter(step);position:absolute;left:16px;top:20px;width:32px;height:32px;background:#7C3AED;color:#fff;border-radius:50%;text-align:center;line-height:32px;font-weight:700;font-size:14px}.faq-list{margin:24px 0}.faq-item{border:1px solid #e8ecf1;border-radius:8px;margin-bottom:8px;overflow:hidden}.faq-q{padding:16px 20px;cursor:pointer;font-weight:600;font-size:15px;background:#f5f7fa;user-select:none;display:flex;justify-content:space-between;align-items:center}.faq-q:hover{background:#f0f7ff}.faq-arrow{font-size:12px;transition:transform .3s;color:#94a3b8}.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-a-inner{padding:0 20px 16px;font-size:14px;color:#475569;line-height:1.7}.faq-item.open .faq-a{max-height:300px}.faq-item.open .faq-arrow{transform:rotate(180deg)}table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}th{background:#f0f7ff;padding:12px 16px;text-align:left;font-weight:600;border:1px solid #dce8f3}td{padding:12px 16px;border:1px solid #e8ecf1}.site-footer{background:#f0f7ff;border-top:1px solid #dce8f3;margin-top:80px}.footer-inner{max-width:1100px;margin:0 auto;padding:56px 24px 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}.footer-logo{font-size:20px;font-weight:700;color:#A78BFA;margin-bottom:12px}.footer-desc{font-size:13px;line-height:1.8;margin-bottom:16px;color:#475569}.footer-badge{display:inline-block;font-size:12px;background:#fff;color:#7C3AED;padding:6px 14px;border-radius:20px;font-weight:500;border:1px solid #b8ddf5}.footer-col h4{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:16px;letter-spacing:.02em}.footer-col ul{list-style:none}.footer-col li{margin-bottom:10px}.footer-col li a{font-size:13px;color:#475569;text-decoration:none;transition:color .2s}.footer-col li a:hover{color:#7C3AED}.footer-bottom{border-top:1px solid #dce8f3;text-align:center;padding:20px 24px;font-size:12px;color:#94a3b8}@media(max-width:768px){.nav-links{display:none}.art-wrap{flex-direction:column}.art-main{padding:24px}.art-side{width:100%}.footer-inner{grid-template-columns:1fr 1fr;gap:32px}.footer-brand{grid-column:1/-1}}@media(max-width:480px){.footer-inner{grid-template-columns:1fr}}</style> <!-- FAQ accordion JS --> <script>
+    document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.faq-q').forEach(function(q){q.addEventListener('click',function(){var item=q.parentElement;var open=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight='0'});if(!open){item.classList.add('open');item.querySelector('.faq-a').style.maxHeight='500px'}})})});
+  </script> </body> </html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html><html lang="zh-CN"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Telegram文件发送大小限制详解：各平台上限与突破方法（2026版）</title><meta name="description" content="Telegram文件发送大小到底是多少？免费版2GB、Premium版4GB的上限分别适用于哪些场景？本文详解iOS、Android、Windows、Mac各平台的文件大小限制规则，以及大文件拆分、云端转发等5种突破方案。"><meta name="keywords" content="Telegram文件大小限制,telegram发送文件上限,Telegram大文件发送,telegram文件太大,Telegram 2GB,Telegram Premium 4GB"><link rel="canonical" href="https://tookd.com/telegram-file-size-limit/"><link rel="alternate" hreflang="zh-CN" href="https://tookd.com/telegram-file-size-limit/"><meta name="robots" content="index, follow"><!-- OG --><meta property="og:title" content="Telegram文件发送大小限制详解：各平台上限与突破方法（2026版）"><meta property="og:description" content="Telegram文件发送大小到底是多少？免费版2GB、Premium版4GB的上限分别适用于哪些场景？本文详解iOS、Android、Windows、Mac各平台的文件大小限制规则，以及大文件拆分、云端转发等5种突破方案。"><meta property="og:url" content="https://tookd.com/telegram-file-size-limit/"><meta property="og:type" content="article"><meta property="og:image" content="https://tookd.com/images/og-default.png"><meta name="twitter:card" content="summary_large_image"><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><!-- Structured Data --><script type="application/ld+json">[{"@context":"https://schema.org","@type":"Article","headline":"Telegram文件发送大小限制详解：各平台上限与突破方法（2026版）","description":"Telegram文件发送大小到底是多少？免费版2GB、Premium版4GB的上限分别适用于哪些场景？本文详解iOS、Android、Windows、Mac各平台的文件大小限制规则，以及大文件拆分、云端转发等5种突破方案。","url":"https://tookd.com/telegram-file-size-limit/","datePublished":"2026-06-27","dateModified":"2026-06-27","author":{"@type":"Organization","name":"TG教程指南"},"inLanguage":"zh-CN","image":"https://tookd.com/images/og-default.png"},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"首页","item":"https://tookd.com"},{"@type":"ListItem","position":2,"name":"Telegram文件发送大小限制详解：各平台上限与突破方法（2026版）"}]}]</script><style>.art-wrap[data-astro-cid-yvbahnfj]{max-width:1100px}</style></head> <body> <!-- Nav --> <nav class="site-nav"> <div class="nav-inner"> <a href="/" class="nav-logo">TG消息修复</a> <div class="nav-links"> <a href="/">首页</a> <a href="/articles/">所有教程</a> <a href="/articles/?category=network-fix">网络排查</a><a href="/articles/?category=account-limits">账户限制</a><a href="/articles/?category=file-send">文件发送</a><a href="/articles/?category=group-send">群组频道</a><a href="/articles/?category=send-faq">发送FAQ</a> </div> </div> </nav> <!-- Breadcrumb (article pages) --> <div class="breadcrumb"> <a href="/">首页</a> <span> &raquo; Telegram文件发送大小限制详解：各平台上限与突破方法（2026版）</span> </div> <main>  <div class="art-wrap" data-astro-cid-yvbahnfj> <article class="art-main" data-astro-cid-yvbahnfj> <h1 data-astro-cid-yvbahnfj>Telegram文件发送大小限制详解：各平台上限与突破方法（2026版）</h1> <div class="art-meta" data-astro-cid-yvbahnfj> <span data-astro-cid-yvbahnfj>📅 2026-06-27</span> <span class="art-tag file-send" data-astro-cid-yvbahnfj>文件发送</span> </div> <div class="art-body" data-astro-cid-yvbahnfj> <img src="/images/og-default.png" alt="Telegram文件发送大小限制详解：各平台上限与突破方法（2026版）" style="width:100%; border-radius:8px; margin-bottom:24px;" data-astro-cid-yvbahnfj> <p>你正准备给同事发一个3GB的项目压缩包，Telegram却弹出一句冷冰冰的提示：「File is too large」。你愣了一下——昨天不是还能发2GB的文件吗？怎么今天就发不出去了？</p>
+<p>很多Telegram用户都踩过这个坑：知道Telegram能发「大文件」，但具体多大算大、不同平台规则是否一致、免费和付费的区别在哪里，这些问题不搞清楚，发送失败就只是时间问题。</p>
+<p>这篇文章把 <strong><a href="https://tookd.com/">Telegram文件发送大小限制</a></strong> 的规则从头拆到尾。不只是告诉你能发多大，更会给你几种合法的突破方案。</p>
+<h2 id="telegram文件大小限制一览">Telegram文件大小限制一览</h2>
+<p>先看结论——Telegram在不同订阅级别下的文件大小上限：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>订阅类型</th><th>单个文件上限</th><th>适用平台</th></tr></thead><tbody><tr><td><strong>免费版（普通用户）</strong></td><td>2 GB</td><td>iOS / Android / Windows / Mac / Web</td></tr><tr><td><strong>Telegram Premium</strong></td><td>4 GB</td><td>iOS / Android / Windows / Mac / Web</td></tr><tr><td><strong>Telegram API / Bot</strong></td><td>2 GB（普通Bot）/ 4 GB（Premium Bot）</td><td>所有平台</td></tr></tbody></table>
+<p>也就是说，无论你用什么设备，<strong>免费用户单个文件不能超过2GB，Premium用户不能超过4GB</strong>。不存在某些平台「特殊放宽」的情况——上限是账号级别的，和设备无关。</p>
+<h3 id="什么类型的文件受限制">什么类型的文件受限制？</h3>
+<p>Telegram将几乎所有可发送的内容都纳入这个限制：</p>
+<ul>
+<li><strong>文档（Document）</strong>：PDF、Word、Excel、ZIP、RAR、APK等</li>
+<li><strong>视频（Video）</strong>：MP4、MOV、AVI、MKV等</li>
+<li><strong>音频（Audio）</strong>：MP3、WAV、FLAC等</li>
+<li><strong>压缩包（Archive）</strong>：ZIP、RAR、7Z、TAR等</li>
+<li><strong>图片（Photo）</strong>：虽然极少有人用Telegram发送单张2GB以上的照片，但图片同样受此限制约束</li>
+</ul>
+<h3 id="为什么不直接放开到无限大">为什么不直接放开到无限大？</h3>
+<p>Telegram之所以是最「大方」的即时通讯软件之一（WhatsApp限制100MB，微信限制1GB），但它仍然设置了上限，原因有三：</p>
+<ol>
+<li><strong>服务器存储成本</strong>：Telegram的云端存储是免费的，每个文件上传后永久保存在服务器上。4GB × 数亿用户 = 天文数字的存储成本</li>
+<li><strong>传输效率</strong>：超过4GB的文件在移动网络环境下传输时间过长，用户体验会急剧下降</li>
+<li><strong>滥用防控</strong>：无限制的上传会被用于非法文件分发，设置上限是一种风控措施</li>
+</ol>
+<h2 id="各平台文件发送大小实测">各平台文件发送大小实测</h2>
+<p>虽然官方文档说2GB/4GB，但在实际使用中，不同平台的行为会有微妙差异。以下是2026年6月在各个平台的实际测试结果：</p>
+<h3 id="windows桌面版">Windows桌面版</h3>
+<p>Windows版Telegram对文件大小的检测最为严格。当你拖入一个超过上限的文件时：</p>
+<ul>
+<li>免费版：超过2GB的文件直接显示「File is too large. Maximum file size is 2.0 GB」</li>
+<li>Premium版：超过4GB的文件显示类似提示，上限变为4GB</li>
+<li>如果文件刚好2.00GB（或4.00GB），有一定概率能发送成功，但不建议依赖此灰色地带</li>
+</ul>
+<p><strong>特例</strong>：Windows版的某些旧版本（3.x以下）存在一个Bug，偶尔允许发送略超2GB的文件，但该漏洞已在2025年底的更新中修复。不要指望它。</p>
+<h3 id="mac桌面版">Mac桌面版</h3>
+<p>Mac版行为与Windows版基本一致。区别在于：</p>
+<ul>
+<li>Mac版在拖入超大文件时没有明确的错误弹窗——文件直接不出现或显示一个红色的感叹号图标</li>
+<li>通过「文件→发送文件」菜单选择文件时，文件选择器中不会过滤超大文件，但在点击发送后会提示失败</li>
+</ul>
+<p>这并不是说Mac版更宽松，只是错误提示的方式不同。</p>
+<h3 id="android版">Android版</h3>
+<p>Android版处理超大文件的方式最「温和」：</p>
+<ul>
+<li>如果文件超过上限，Telegram会尝试自动压缩视频（仅限视频文件）</li>
+<li>自动压缩可以将视频缩小到上限以下，但画质会明显下降</li>
+<li>对于非视频文件（ZIP、APK等），仍然直接拒绝发送</li>
+</ul>
+<h3 id="ios版">iOS版</h3>
+<p>iOS版有一个额外的限制：<strong>通过「照片」应用直接分享到Telegram时，iOS系统可能会对文件大小进行二次压缩</strong>。这与Telegram本身的限制无关，而是iOS的分享扩展机制导致的。绕过方法是：在Telegram内部通过附件按钮选择文件，而非从照片App分享。</p>
+<h3 id="web版">Web版</h3>
+<p>Web版Telegram（web.telegram.org）的文件大小限制与桌面版一致，但因为浏览器的内存管理机制，发送接近上限的大文件时更容易出现卡顿或崩溃。<strong>建议大于1GB的文件尽量使用桌面客户端发送</strong>。</p>
+<h2 id="premium扩容到底值不值">Premium扩容到底值不值</h2>
+<p>Telegram Premium的月费约为$4.99（不同地区价格有差异），翻倍的文件大小上限（2GB→4GB）是Premium的核心卖点之一。那么对于「文件发送」这个单一需求，值不值？</p>
+<h3 id="值的情况">值的情况</h3>
+<ul>
+<li>你经常需要发送1.5GB～4GB之间的单个文件</li>
+<li>你的工作流依赖Telegram作为文件传输工具</li>
+<li>你不方便使用网盘、U盘等其他传输方式</li>
+<li>Premium的其他功能（无广告、更快下载、语音转文字等）对你有附加价值</li>
+</ul>
+<h3 id="不值的情况">不值的情况</h3>
+<ul>
+<li>你只是偶尔发送2GB以上的文件</li>
+<li>你可以通过RAR分卷压缩把大文件拆成多个2GB以内的小文件</li>
+<li>你习惯用Google Drive、OneDrive等云盘分享链接（Telegram支持直接粘贴云端链接，接收方点击即可下载）</li>
+</ul>
+<h3 id="一个折中方案">一个折中方案</h3>
+<p>如果不想长期订阅Premium，可以在需要发送大文件的月份临时订阅一个月，用完取消。Telegram Premium按月计费，没有长期合约。</p>
+<blockquote>
+<p>关于Premium的完整功能介绍和隐藏福利，参见本站 <a href="/telegram-send-message-failed/">Telegram官方下载安装完整教程</a> 中的相关章节。</p>
+</blockquote>
+<h2 id="突破文件大小限制的5种合法方案">突破文件大小限制的5种合法方案</h2>
+<p>如果不想付费，或者文件超过了4GB（Premium也无能为力），以下是5种可操作的突破方案：</p>
+<h3 id="方案一rar分卷压缩">方案一：RAR分卷压缩</h3>
+<p>最传统的做法——用WinRAR或7-Zip将大文件拆分成多个小压缩包：</p>
+<ol>
+<li>右键点击文件 → 添加到压缩文件</li>
+<li>在「分卷大小」中输入「2G」或「2000M」</li>
+<li>压缩完成后会生成 <code>.part1.rar</code>、<code>.part2.rar</code> 等文件</li>
+<li>将所有分卷逐个发送到Telegram</li>
+<li>接收方下载所有分卷后，解压任意一个即可还原原文件</li>
+</ol>
+<p><strong>优点</strong>：完全免费，不限文件原始大小
+<strong>缺点</strong>：接收方需要下载多个文件并解压，操作门槛稍高。而且Telegram虽然云存储单个文件，但接收方需要先全部下载到本地才能解压</p>
+<h3 id="方案二使用telegram的云端链接替代">方案二：使用Telegram的云端链接替代</h3>
+<p>Telegram对粘贴的外部链接没有大小限制。你可以：</p>
+<ol>
+<li>将文件上传到Google Drive、OneDrive、Dropbox等网盘</li>
+<li>生成分享链接</li>
+<li>将链接直接粘贴到Telegram聊天框</li>
+</ol>
+<p>Telegram会自动生成一个带预览的链接卡片，接收方点击即可跳转下载，完全不受Telegram的2GB/4GB限制。</p>
+<p><strong>优点</strong>：发送超简单，接收方体验好
+<strong>缺点</strong>：需要网盘账号，部分网盘对免费用户也有下载速度限制</p>
+<h3 id="方案三视频压缩仅限视频">方案三：视频压缩（仅限视频）</h3>
+<p>如果你的「大文件」是视频，可以先用压缩工具将文件大小降到上限以下：</p>
+<ul>
+<li><strong>HandBrake</strong>（免费开源）：调整码率和分辨率，4GB视频通常能压到2GB以下且画质损失可控</li>
+<li><strong>FFmpeg命令行</strong>：<code>ffmpeg -i input.mp4 -b:v 1M output.mp4</code> 将视频码率降到1Mbps</li>
+<li><strong>在线压缩工具</strong>：上传到在线平台自动压缩，但要注意隐私和文件大小上限</li>
+</ul>
+<h3 id="方案四分段发送仅限视频音频">方案四：分段发送（仅限视频/音频）</h3>
+<p>Telegram支持将长视频切分成多个片段发送。如果你的视频超过2GB但不需要保持原始文件的完整性（比如只是分享一段录像），可以：</p>
+<ol>
+<li>用剪辑软件将视频切成2-3段</li>
+<li>每段控制在2GB以内</li>
+<li>逐一发送，接收方收到后可以直接在Telegram内依次播放</li>
+</ol>
+<p>这比RAR分卷的方式更友好——接收方不需要下载和解压，直接在Telegram播放器里看就行。</p>
+<h3 id="方案五换用telegram-desktop的流式上传">方案五：换用Telegram Desktop的「流式上传」</h3>
+<p>Telegram Desktop（Windows/Mac版）在处理大文件上传时使用了流式传输（Streaming Upload），这是移动端不具备的能力。对于接近上限的大文件（如1.8GB-2GB），桌面版的成功率通常高于手机版，因为桌面端的网络连接更稳定、内存管理更成熟。</p>
+<p><strong>具体操作</strong>：直接用桌面版Telegram的拖拽功能将文件拖入对话框，而非通过「回形针」附件按钮选择。拖拽方式似乎能利用更高效的上传通道（虽然没有官方文档证实，但实测成功率更高）。</p>
+<h2 id="文件发送失败的常见原因">文件发送失败的常见原因</h2>
+<p>除了文件大小超限，还有其他原因可能导致文件发送失败。这里快速盘点：</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>失败原因</th><th>表现</th><th>解决方法</th></tr></thead><tbody><tr><td>文件超过2GB/4GB</td><td>「File is too large」提示</td><td>分卷压缩或使用网盘链接</td></tr><tr><td>网络不稳定</td><td>上传进度条卡住不动</td><td>切换Wi-Fi/移动数据，或更换代理节点</td></tr><tr><td>磁盘空间不足</td><td>发送方无提示，接收方无法下载</td><td>清理手机/电脑存储空间</td></tr><tr><td>文件格式被拦截</td><td>某些可执行文件（.exe、.bat）被限制</td><td>打包成ZIP再发送</td></tr><tr><td>账户被限制</td><td>所有消息都发不出去</td><td>参考 <a href="/telegram-send-rate-limit/">账户发送限制解除</a></td></tr></tbody></table>
+<p>特别注意：<strong>如果你发送的是图片或视频，失败原因可能不是文件大小，而是格式或编码问题</strong>。关于这类问题，我们专门写了一篇 <a href="/telegram-media-send-failed/">图片视频发送失败解决方法</a> 来详细拆解。</p>
+<h2 id="常见问题">常见问题</h2>
+<hr>
+<p>搞清楚Telegram的文件大小限制规则之后，发送文件的失败率应该能大幅下降。记住核心公式：<strong>免费=2GB，Premium=4GB，超过就分卷或换网盘链接</strong>。文件发送的另一个高频坑——图片和视频的格式兼容问题——我们在另一篇 <a href="/telegram-media-send-failed/">图片视频发送失败解决方法</a> 中做了完整的拆解。</p>
+<p>文件发送这件事，规则不复杂，但细节容易踩坑。把这篇收藏起来，下次遇到「File is too large」的时候，你就知道该往哪个方向排查了。</p>
+<p class="notice">📢 声明：本文为 Telegram消息修复 原创教程，基于Telegram客户端实测编写，仅供参考。Telegram 相关商标归 Telegram Messenger LLP 所有。</p>
+<div class="faq-list">
+<div class="faq-item">
+  <div class="faq-q">Telegram免费版真的能发送2GB的文件吗？为什么我1.5GB就失败了？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">能，2GB是所有平台的官方上限。如果你在1.5GB时就遇到发送失败，通常不是文件大小的问题，而是以下原因之一：① 网络不稳定导致上传中断（移动网络下尤其常见）；② 手机存储空间不足，Telegram无法完成文件的本地缓存处理；③ 文件本身损坏或不完整，Telegram读取失败。建议先切换到Wi-Fi再试，或检查设备剩余存储空间是否至少为文件大小的1.5倍。</div></div>
+</div>
+<div class="faq-item">
+  <div class="faq-q">Telegram Premium的4GB上限是永久的还是可能再提高？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">4GB上限自Telegram Premium推出以来一直保持稳定。Telegram CEO Pavel Durov曾在频道中提到「未来可能考虑进一步提高」，但没有给出具体时间表。从技术角度分析，超过4GB后云端存储和CDN分发的成本将大幅上升，短期内大幅提升的可能性不大。如果你经常需要发送4GB以上的文件，建议使用方案一（RAR分卷）或方案二（网盘链接）来绕过限制。</div></div>
+</div>
+<div class="faq-item">
+  <div class="faq-q">发送文件时显示「Uploading...」但进度条不走，是文件太大的原因吗？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">进度条卡住通常不是文件大小的原因，而是网络连接问题。即使是2GB的文件，只要网络通畅，上传进度条应该持续前进。如果卡住不动，建议：① 断开并重连代理/VPN；② 切换到不同的网络（如Wi-Fi换移动数据）；③ 重启Telegram客户端。如果反复尝试仍然卡住，可以在 [Telegram消息发送失败排查](https://tookd.com/) 中找到更系统的排查方法。</div></div>
+</div>
+<div class="faq-item">
+  <div class="faq-q">我取消了Premium订阅，之前上传的4GB文件还能下载吗？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">能。文件一经上传到Telegram云端，即使你后来取消Premium订阅，已经上传的文件仍然可以被你和其他人正常下载。文件大小限制只影响「发送」动作，不影响已存储的文件。不过取消Premium后你再发送新文件就会退回2GB上限。</div></div>
+</div>
+<div class="faq-item">
+  <div class="faq-q">用RAR分卷压缩后，接收方没有电脑怎么解压？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">手机端也有RAR解压工具。Android用户可以安装「RAR」（由RARLAB官方出品）或「ZArchiver」；iOS用户可以使用「iZip」或「Documents by Readdle」。操作流程和电脑端类似：下载所有分卷到同一个文件夹，然后解压.part1.rar即可自动合并。不过手机端解压大文件对性能和存储空间有一定要求，建议接收方尽量用电脑解压。</div></div>
+</div>
+<div class="faq-item">
+  <div class="faq-q">Telegram的「慢速模式」会影响文件发送吗？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">慢速模式（Slow Mode）只限制群组成员发送消息的频率（如每30秒只能发一条），不会限制单条消息中附件的大小。你在慢速模式群组中仍然可以发送不超过2GB/4GB的文件，只是发完这个文件后需要等待慢速模式的间隔才能发下一条消息。关于群组发送限制的完整说明，请参考我们后续发布的群组频道专栏文章。</div></div>
+</div>
+<div class="faq-item">
+  <div class="faq-q">为什么Telegram不提供一个统一的文件大小提示？每次都要等到发送失败才知道超限？ <span class="faq-arrow">▼</span></div>
+  <div class="faq-a"><div class="faq-a-inner">这是个值得吐槽的产品体验问题。Telegram目前的设计逻辑是「先让你选文件，选完再检验大小」——确实不够友好。一个实用的技巧是：在发送前，先打开文件管理器检查文件属性中的大小。Windows用户按Alt+Enter，Mac用户按Cmd+I，就能快速看到文件的精确大小。如果接近2GB（免费版）或4GB（Premium版），提前做好分卷或压缩准备。</div></div>
+</div>
+</div> </div> </article> <!-- Sidebar --> <aside class="art-side" data-astro-cid-yvbahnfj> <div class="sb-card" data-astro-cid-yvbahnfj> <h4 data-astro-cid-yvbahnfj>相关教程</h4> <a href="/telegram-media-send-failed/" class="sb-rel-item" data-astro-cid-yvbahnfj> <h5 data-astro-cid-yvbahnfj>Telegram图片视频发送失败？10种常见场景与完整解决方法（2026）</h5> </a> </div> <div class="sb-card" data-astro-cid-yvbahnfj> <h4 data-astro-cid-yvbahnfj>热门标签</h4> <div class="trend-tags" data-astro-cid-yvbahnfj> <a href="/articles/?category=network-fix" data-astro-cid-yvbahnfj>网络排查</a><a href="/articles/?category=account-limits" data-astro-cid-yvbahnfj>账户限制</a><a href="/articles/?category=file-send" data-astro-cid-yvbahnfj>文件发送</a><a href="/articles/?category=group-send" data-astro-cid-yvbahnfj>群组频道</a><a href="/articles/?category=send-faq" data-astro-cid-yvbahnfj>发送FAQ</a> </div> </div> </aside> </div>  </main> <!-- Footer --> <footer class="site-footer"> <div class="footer-inner"> <div class="footer-brand"> <div class="footer-logo">TG消息修复</div> <p class="footer-desc">本站为独立教程站点，非 Telegram 官方。所有内容基于公开信息整理。</p> <span class="footer-badge">📚 独立教程网站</span> </div> <div class="footer-col"> <h4>快速导航</h4> <ul> <li><a href="/">首页</a></li> <li><a href="/articles/">所有教程</a></li> <li><a href="/about/">关于我们</a></li> <li><a href="/sitemap/">网站地图</a></li> </ul> </div> <div class="footer-col"> <h4>教程分类</h4> <ul> <li><a href="/articles/?category=network-fix">网络排查</a></li><li><a href="/articles/?category=account-limits">账户限制</a></li><li><a href="/articles/?category=file-send">文件发送</a></li><li><a href="/articles/?category=group-send">群组频道</a></li><li><a href="/articles/?category=send-faq">发送FAQ</a></li> </ul> </div> <div class="footer-col"> <h4>支持</h4> <ul> <li><a href="/contact/">联系我们</a></li> <li><a href="/privacy/">隐私政策</a></li> </ul> </div> </div> <div class="footer-bottom"> <p>&copy; 2026 TG消息修复. All rights reserved.</p> </div> </footer> <!-- Inject global CSS (plain <style> avoids Astro's CSS processing) --> <style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans SC',sans-serif;background:#ffffff;color:#1e293b;line-height:1.6}a{color:#7C3AED;text-decoration:none}a:hover{color:#A78BFA}.site-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.06);padding:0 24px}.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}.nav-logo{font-size:18px;font-weight:700;color:#7C3AED;text-decoration:none}.nav-links{display:flex;gap:24px}.nav-links a{font-size:14px;color:#475569;text-decoration:none;transition:color .2s}.nav-links a:hover,.nav-links a.active{color:#7C3AED}.breadcrumb{max-width:1100px;margin:0 auto;padding:16px 24px 0;font-size:13px;color:#94a3b8}.breadcrumb a{color:#7C3AED;text-decoration:none}.art-wrap{max-width:1100px;margin:0 auto;padding:24px;display:flex;gap:32px}.art-main{flex:1;min-width:0;background:#fff;border-radius:12px;padding:40px;box-shadow:0 1px 3px rgba(0,0,0,.04)}.art-main h1{font-size:28px;font-weight:800;line-height:1.4;margin-bottom:16px;color:#1e293b}.art-meta{display:flex;gap:16px;align-items:center;margin-bottom:24px;font-size:13px;color:#94a3b8}.art-tag{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:6px}.art-tag.network-fix{background:#f5f3ff;color:#5b21b6}.art-tag.account-limits{background:#ecfdf5;color:#065f46}.art-tag.file-send{background:#fef3c7;color:#92400e}.art-tag.group-send{background:#e0e7ff;color:#4338ca}.art-tag.send-faq{background:#fce7f3;color:#be185d}.art-body{font-size:15px;line-height:1.9;color:#475569}.art-body h2{font-size:22px;font-weight:700;margin:36px 0 16px;color:#1e293b}.art-body h3{font-size:18px;font-weight:600;margin:28px 0 12px;color:#1e293b}.art-body p{margin-bottom:16px}.art-body ul,.art-body ol{margin:12px 0 16px 24px}.art-body li{margin-bottom:8px}.art-body code{background:#f5f7fa;padding:2px 6px;border-radius:4px;font-size:13px;color:#e11d48}.art-body pre{background:#1e293b;color:#e2e8f0;padding:20px;border-radius:8px;overflow-x:auto;margin:16px 0;font-size:13px}.art-side{width:300px;flex-shrink:0}.sb-card{background:#fff;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.04)}.sb-card h4{font-size:14px;font-weight:700;margin-bottom:12px;color:#1e293b}.sb-rel-item{display:flex;gap:10px;margin-bottom:12px;text-decoration:none;color:inherit}.sb-rel-item:hover h5{color:#7C3AED}.sb-rel-item h5{font-size:13px;font-weight:500;line-height:1.4;transition:color .2s}.trend-tags{display:flex;flex-wrap:wrap;gap:8px}.trend-tags a{font-size:12px;padding:4px 12px;background:#f5f7fa;border-radius:16px;color:#475569;text-decoration:none;transition:all .2s}.trend-tags a:hover{background:#e0f2fe;color:#7C3AED}.info-box{background:#f0f9ff;border-left:4px solid #7C3AED;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0;font-size:14px}.warn-box{background:#fffbeb;border-left:4px solid #f59e0b;padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0;font-size:14px}.warn-box strong{color:#92400e}.step-list{counter-reset:step;margin:20px 0}.step-card{background:#fff;border:1px solid #e8ecf1;border-radius:10px;padding:20px;margin-bottom:16px;counter-increment:step;position:relative;padding-left:64px}.step-card::before{content:counter(step);position:absolute;left:16px;top:20px;width:32px;height:32px;background:#7C3AED;color:#fff;border-radius:50%;text-align:center;line-height:32px;font-weight:700;font-size:14px}.faq-list{margin:24px 0}.faq-item{border:1px solid #e8ecf1;border-radius:8px;margin-bottom:8px;overflow:hidden}.faq-q{padding:16px 20px;cursor:pointer;font-weight:600;font-size:15px;background:#f5f7fa;user-select:none;display:flex;justify-content:space-between;align-items:center}.faq-q:hover{background:#f0f7ff}.faq-arrow{font-size:12px;transition:transform .3s;color:#94a3b8}.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}.faq-a-inner{padding:0 20px 16px;font-size:14px;color:#475569;line-height:1.7}.faq-item.open .faq-a{max-height:300px}.faq-item.open .faq-arrow{transform:rotate(180deg)}table{width:100%;border-collapse:collapse;margin:20px 0;font-size:14px}th{background:#f0f7ff;padding:12px 16px;text-align:left;font-weight:600;border:1px solid #dce8f3}td{padding:12px 16px;border:1px solid #e8ecf1}.site-footer{background:#f0f7ff;border-top:1px solid #dce8f3;margin-top:80px}.footer-inner{max-width:1100px;margin:0 auto;padding:56px 24px 40px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}.footer-logo{font-size:20px;font-weight:700;color:#A78BFA;margin-bottom:12px}.footer-desc{font-size:13px;line-height:1.8;margin-bottom:16px;color:#475569}.footer-badge{display:inline-block;font-size:12px;background:#fff;color:#7C3AED;padding:6px 14px;border-radius:20px;font-weight:500;border:1px solid #b8ddf5}.footer-col h4{font-size:13px;font-weight:700;color:#1e293b;margin-bottom:16px;letter-spacing:.02em}.footer-col ul{list-style:none}.footer-col li{margin-bottom:10px}.footer-col li a{font-size:13px;color:#475569;text-decoration:none;transition:color .2s}.footer-col li a:hover{color:#7C3AED}.footer-bottom{border-top:1px solid #dce8f3;text-align:center;padding:20px 24px;font-size:12px;color:#94a3b8}@media(max-width:768px){.nav-links{display:none}.art-wrap{flex-direction:column}.art-main{padding:24px}.art-side{width:100%}.footer-inner{grid-template-columns:1fr 1fr;gap:32px}.footer-brand{grid-column:1/-1}}@media(max-width:480px){.footer-inner{grid-template-columns:1fr}}</style> <!-- FAQ accordion JS --> <script>
+    document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.faq-q').forEach(function(q){q.addEventListener('click',function(){var item=q.parentElement;var open=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(function(i){i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight='0'});if(!open){item.classList.add('open');item.querySelector('.faq-a').style.maxHeight='500px'}})})});
+  </script> </body> </html>
